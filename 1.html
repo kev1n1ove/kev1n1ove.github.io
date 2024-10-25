@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潘仲平的搞笑动画</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff; /* 淡蓝色背景 */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .character {
+            width: 200px;
+            transition: transform 0.5s;
+            position: relative;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .animate {
+            transform: rotate(20deg);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #ff69b4; /* 粉色按钮 */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1493; /* 深粉色 */
+        }
+
+        .message {
+            font-size: 24px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* 心形样式 */
+        .heart {
+            display: none;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 20px 0;
+        }
+
+        .heart:before, .heart:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background: url('E:\smart_contract_generator\templates\潘仲平.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .heart:before {
+            left: 100px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <img class="character" src="E:\smart_contract_generator\templates\潘仲平.jpg" alt="潘仲平">
+    <button onclick="animate()">嘿嘿，潘仲平来了！</button>
+    <div class="message" id="message">嘿嘿，仲平来咯！</div>
+
+    <!-- 模态框 -->
+    <div class="modal" id="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" src="E:\smart_contract_generator\templates\潘仲平.jpg" alt="弹出图片">
+    </div>
+
+    <!-- 心形 -->
+    <div class="heart" id="heart"></div>
+
+    <script>
+        function animate() {
+            const character = document.querySelector('.character');
+            const message = document.getElementById('message');
+            const modal = document.getElementById('modal');
+            const heart = document.getElementById('heart');
+            
+            character.classList.toggle('animate');
+            message.classList.toggle('show');
+
+            // 显示模态框
+            modal.style.display = "flex";
+
+            // 显示心形
+            heart.style.display = "block";
+
+            // 2秒后隐藏消息
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 2000); 
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
